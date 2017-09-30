@@ -10,18 +10,6 @@ import com.doubao.finance.util.ajax.JsonResponse;
 import com.doubao.finance.util.ajax.JsonResponseBuilder;
 import com.doubao.finance.util.ajax.ResponseCode;
 import com.doubao.finance.view.BillingExportView;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
-import java.util.List;
-import java.util.Map;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.jasig.cas.client.authentication.AttributePrincipal;
 import org.slf4j.Logger;
@@ -29,15 +17,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.ContextLoader;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping({"/realCollection"})
@@ -167,17 +157,17 @@ public class RealCollectionController
     @RequestMapping(value={"/import"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
     public JsonResponse importRealCollection(@RequestParam("file") CommonsMultipartFile file, HttpServletRequest request)
     {
-        AttributePrincipal principal = (AttributePrincipal)request.getUserPrincipal();
+       /* AttributePrincipal principal = (AttributePrincipal)request.getUserPrincipal();
         if (principal == null) {
             return JsonResponseBuilder.buildErrorJsonResponseWithoutData(ResponseCode.ERROR_USER_NOT_LOGIN);
-        }
+        }*/
         try
         {
             InputStream inputStream = file.getInputStream();
             if (inputStream == null) {
                 return JsonResponseBuilder.buildErrorJsonResponseWithoutData(ResponseCode.ERROR_PARAMETER);
             }
-            return this.realCollectionImportService.importRealCollectionFromExcelNew(inputStream, principal.getName());
+            return this.realCollectionImportService.importRealCollectionFromExcelNew(inputStream, "abd");
         }
         catch (Exception e)
         {
