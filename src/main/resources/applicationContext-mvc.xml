@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:property-placeholder location="classpath:/api.properties,classpath:/spring-cas.properties"/>
+
+    <context:component-scan base-package="com.doubao.finance.controller,com.doubao.finance.api"/>
+
+    <mvc:annotation-driven />
+
+    <mvc:resources mapping="/css/**" location="css/" />
+    <mvc:resources mapping="/js/**" location="js/" />
+    <mvc:resources mapping="/img/**" location="img/" />
+    <mvc:resources mapping="/fonts/**" location="fonts/"/>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+    
+    <mvc:view-controller path="/realCollection/toAdd" view-name="realCollection/addRealCollection" />
+
+    <mvc:view-controller path="/billing/list" view-name="billing/billingList"/>
+    <mvc:view-controller path="/billing/toAdd" view-name="billing/addBilling"/>
+    <mvc:view-controller path="/realCollection/toImport" view-name="realCollection/importRealCollection"/>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+        <property name="defaultEncoding" value="UTF-8" />
+        <!--每个上传文件的最大大小为10M -->
+        <property name="maxUploadSizePerFile" value="10485760" />
+    </bean>
+</beans>

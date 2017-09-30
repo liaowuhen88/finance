@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.doubao.finance.dao.SerialNumberDao">
+
+    <sql id="tableName">
+        finance_serial_number
+    </sql>
+    <sql id="allColumnsWithoutId">
+        `businessName`,`day`,`curVal`
+    </sql>
+
+    <insert id="insertSerialNumber" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+        <include refid="tableName"/>
+        (<include refid="allColumnsWithoutId"/>)
+        VALUES (#{businessName},#{day},#{curVal})
+    </insert>
+    <update id="updateSerialNumber">
+        UPDATE
+        <include refid="tableName"/>
+        SET curVal = #{curVal}
+        WHERE id = #{id}
+    </update>
+    <delete id="clearAll">
+        DELETE FROM
+        <include refid="tableName"/>
+    </delete>
+
+    <select id="queryById" resultType="com.doubao.finance.pojo.SerialNumber">
+        SELECT id,
+        <include refid="allColumnsWithoutId"/>
+        FROM
+        <include refid="tableName"/>
+        WHERE id=#{id}
+    </select>
+
+    <select id="queryByBusinessNameAndDay" resultType="com.doubao.finance.pojo.SerialNumber">
+        SELECT id,
+        <include refid="allColumnsWithoutId"/>
+        FROM
+        <include refid="tableName"/>
+        WHERE businessName=#{businessName} AND `day`=#{day}
+    </select>
+</mapper>

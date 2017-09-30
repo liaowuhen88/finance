@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.doubao.finance.dao.SerialNumberRuleDao">
+
+    <sql id="tableName">
+        finance_serial_number_rule
+    </sql>
+    <sql id="allColumnsWithoutId">
+        `businessName`,`prefix`,`dateFormat`,`width`,
+        `start`,`max`,`step`,`createTime`
+    </sql>
+
+    <insert id="insertSerialNumberRule" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+        <include refid="tableName"/>
+        (<include refid="allColumnsWithoutId"/>)
+        VALUES (#{businessName},#{prefix},#{dateFormat},#{width},#{start},#{max},#{step},#{createTime})
+    </insert>
+    <select id="queryById" resultType="com.doubao.finance.pojo.SerialNumberRule">
+        SELECT id,
+        <include refid="allColumnsWithoutId"/>
+        FROM
+        <include refid="tableName"/>
+        WHERE id=#{id}
+    </select>
+    <select id="queryByBusinessName" resultType="com.doubao.finance.pojo.SerialNumberRule">
+        SELECT id,
+        <include refid="allColumnsWithoutId"/>
+        FROM
+        <include refid="tableName"/>
+        WHERE businessName=#{businessName}
+    </select>
+</mapper>

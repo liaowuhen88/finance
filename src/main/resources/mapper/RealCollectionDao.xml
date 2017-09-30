@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.doubao.finance.dao.RealCollectionDao">
+
+    <sql id="tableName">
+        finance_real_collection
+    </sql>
+    <sql id="allColumnsWithoutId">
+        `serialNumber`,`receiveDate`,`money`,`chargeEntityId`,
+        `chargeEntityName`,`summary`,`usage`,`remark`,`payerAccountName`,`payerAccountNumber`,`payerSourceAccount`,`payeeAccountName`,`payeeAccountNumber`,`payeeSourceAccount`,`operator`,`createTime`,`isDel`,`lastUpdateTime`
+    </sql>
+
+    <insert id="insertRealCollection" parameterType="com.doubao.finance.pojo.RealCollection" keyProperty="id"
+            useGeneratedKeys="true">
+        INSERT INTO <include refid="tableName" />
+        ( <include refid="allColumnsWithoutId" /> )
+        VALUES (#{serialNumber},#{receiveDate},#{money},#{chargeEntityId},#{chargeEntityName},
+              #{summary},#{usage},#{remark},#{payerAccountName},#{payerAccountNumber},
+              #{payerSourceAccount},#{payeeAccountName},#{payeeAccountNumber},
+        #{payeeSourceAccount},#{operator},now(),#{isDel} , now())
+    </insert>
+
+    <insert id="batchInsertRealCollection" useGeneratedKeys="true" parameterType="java.util.List" keyProperty="id">
+        INSERT INTO
+        <include refid="tableName"/>
+        (
+        <include refid="allColumnsWithoutId"/>
+        )
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.serialNumber},#{item.receiveDate},#{item.money},#{item.chargeEntityId},#{item.chargeEntityName},
+            #{item.summary},#{item.usage},#{item.remark},#{item.payerAccountName},
+            #{item.payerAccountNumber},#{item.payerSourceAccount},#{item.payeeAccountName},#{item.payeeAccountNumber}
+            ,#{item.payeeSourceAccount},#{item.operator},now(),#{item.isDel},now())
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.doubao.finance.pojo.RealCollection">
+      UPDATE <include refid="tableName" />
+        SET
+        `serialNumber`=#{serialNumber},`receiveDate`=#{receiveDate},`money`=#{money},`chargeEntityId`=#{chargeEntityId},
+        `chargeEntityName`=#{chargeEntityName},`summary`=#{summary},`usage`=#{usage},`remark`=#{remark},`payerAccountName`=#{payerAccountName},
+        `payerAccountNumber`=#{payerAccountNumber},`payerSourceAccount`=#{payerSourceAccount},`payeeAccountName`=#{payeeAccountName},
+        `payeeAccountNumber`=#{payeeAccountNumber},`payeeSourceAccount`=#{payeeSourceAccount},`isDel` = #{isDel} ,
+        lastUpdateTime=now()
+        WHERE id=#{id}
+    </update>
+
+    <select id="queryByCondition" parameterType="RealCollectionQueryCondition"
+            resultType="com.doubao.finance.pojo.RealCollection">
+            SELECT id , <include refid="allColumnsWithoutId" /> FROM <include refid="tableName" />
+            <where>
+                <if test="fromReceiveDate != null and fromReceiveDate !=''">
+                    <![CDATA[ AND receiveDate >= #{fromReceiveDate} ]]>
+                </if>
+                <if test="toReceiveDate != null and toReceiveDate != ''" >
+                    <![CDATA[ AND receiveDate <= #{toReceiveDate} ]]>
+                </if>
+                <if test="chargeEntityId != null">
+                  AND chargeEntityId = #{chargeEntityId}
+                </if>
+                <if test="chargeEntityName != null and chargeEntityName !='' ">
+                    <bind name="pattern" value="'%' + chargeEntityName + '%'" />
+                  AND chargeEntityName  LIKE #{pattern}
+                </if>
+                AND isDel=1
+            </where>
+            ORDER BY createTime DESC
+    </select>
+
+    <select id="queryById" resultType="com.doubao.finance.pojo.RealCollection">
+        SELECT id , <include refid="allColumnsWithoutId" /> FROM <include refid="tableName" />
+        <![CDATA[ WHERE id = #{id} ]]>
+    </select>
+</mapper>
