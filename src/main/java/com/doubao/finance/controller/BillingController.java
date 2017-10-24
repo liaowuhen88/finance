@@ -11,10 +11,6 @@ import com.doubao.finance.util.ajax.JsonResponse;
 import com.doubao.finance.util.ajax.JsonResponseBuilder;
 import com.doubao.finance.util.ajax.ResponseCode;
 import com.doubao.finance.view.BillingExportView;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.jasig.cas.client.authentication.AttributePrincipal;
 import org.slf4j.Logger;
@@ -26,6 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping({"/billing"})
@@ -91,12 +92,12 @@ public class BillingController
     {
         try
         {
-            AttributePrincipal principal = (AttributePrincipal)request.getUserPrincipal();
+            /*AttributePrincipal principal = (AttributePrincipal)request.getUserPrincipal();
             if (principal == null) {
                 return JsonResponseBuilder.buildErrorJsonResponseWithoutData(ResponseCode.ERROR_USER_NOT_LOGIN);
             }
-            billing.setLastUpdater(principal.getName());
-
+            billing.setLastUpdater(principal.getName());*/
+            billing.setLastUpdater("principal");
             Billing newBilling = this.billingService.save(billing);
             return JsonResponseBuilder.buildSuccessJsonResponse(newBilling);
         }
@@ -151,20 +152,20 @@ public class BillingController
     @RequestMapping({"/export"})
     public ModelAndView export2Excel(HttpServletRequest request, BillingQueryCondition queryCondition, Map modelMap)
     {
-        List<Billing> billingList = this.billingService.exportByCondition(queryCondition);
-        if ((billingList == null) || (billingList.isEmpty()))
-        {
-            modelMap.put("message", "������");
+        List billingList = this.billingService.exportByCondition(queryCondition);
+        if (billingList != null && !billingList.isEmpty()) {
+            String fileName = "开票信息导出.xlsx";
+            if (StringUtils.isNotBlank(queryCondition.getFromBillingDate()) && StringUtils.isNotBlank(queryCondition.getToBillingDate())) {
+                fileName = "开票信息导出(%s至%s).xlsx";
+                fileName = String.format(fileName, new Object[]{queryCondition.getFromBillingDate(), queryCondition.getToBillingDate()});
+            }
+
+            modelMap.put("title", fileName);
+            modelMap.put("data", billingList);
+            return new ModelAndView(new BillingExportView(Billing.class), modelMap);
+        } else {
+            modelMap.put("message", "无数据");
             return new ModelAndView("error", modelMap);
         }
-        String fileName = "������������.xlsx";
-        if ((StringUtils.isNotBlank(queryCondition.getFromBillingDate())) && (StringUtils.isNotBlank(queryCondition.getToBillingDate())))
-        {
-            fileName = "������������(%s��%s).xlsx";
-            fileName = String.format(fileName, new Object[] { queryCondition.getFromBillingDate(), queryCondition.getToBillingDate() });
-        }
-        modelMap.put("title", fileName);
-        modelMap.put("data", billingList);
-        return new ModelAndView(new BillingExportView(Billing.class), modelMap);
     }
 }

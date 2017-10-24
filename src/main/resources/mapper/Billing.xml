@@ -7,7 +7,7 @@
         finance_billing
     </sql>
     <sql id="allColumnsWithoutId">
-        `billingSerialNumber`,`chargeEntityId`,`chargeEntityName`,`billingMoney`,`billType`,`billProjectType`,
+        `billingSerialNumber`,`billingNumber`,`chargeEntityId`,`chargeEntityName`,`billingMoney`,`billType`,`billProjectType`,
         `billingDate`,`applicant`,`billingImgCount`,`remark`,`isDel`,`lastUpdater`,`lastUpdateTime`,`createTime`
     </sql>
 
@@ -18,14 +18,14 @@
         <include refid="allColumnsWithoutId"/>
         )
         VALUES
-        (#{billingSerialNumber},#{chargeEntityId},#{chargeEntityName},#{billingMoney},#{billType},#{billProjectType},#{billingDate},#{applicant},#{billingImgCount},#{remark},#{isDel},#{lastUpdater},now(),now())
+        (#{billingSerialNumber},#{billingNumber},#{chargeEntityId},#{chargeEntityName},#{billingMoney},#{billType},#{billProjectType},#{billingDate},#{applicant},#{billingImgCount},#{remark},#{isDel},#{lastUpdater},now(),now())
     </insert>
 
     <update id="update" parameterType="com.doubao.finance.pojo.Billing">
         UPDATE
         <include refid="tableName"/>
         SET
-        `billingSerialNumber`=#{billingSerialNumber},`chargeEntityId`=#{chargeEntityId},`chargeEntityName`=#{chargeEntityName},`billingMoney`=#{billingMoney},
+        `billingSerialNumber`=#{billingSerialNumber},`billingNumber`=#{billingNumber},`chargeEntityId`=#{chargeEntityId},`chargeEntityName`=#{chargeEntityName},`billingMoney`=#{billingMoney},
         `billType`=#{billType},`billProjectType`=#{billProjectType},
         `billingDate`=#{billingDate},`applicant`=#{applicant},`billingImgCount`=#{billingImgCount},`remark`=#{remark},
         `lastUpdater`=#{lastUpdater},`lastUpdateTime`= now(),`isDel` = #{isDel}

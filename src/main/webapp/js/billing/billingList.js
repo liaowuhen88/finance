@@ -45,6 +45,7 @@ $(document).ready(function () {
         columns: [
             {"data": "id", "visible": false},
             {"data": "billingSerialNumber"},
+            {"data": "billingNumber"},
             {"data": "chargeEntityName"},
             {
                 "data": "billingMoney", render: function (data, type, row) {

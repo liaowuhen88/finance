@@ -38,6 +38,16 @@
                                            name="billingSerialNumber" placeholder="发票流水">
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label for="billingNumber" class="col-sm-2 control-label">发票号*:</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="billingNumber"
+                                           name="billingNumber" placeholder="发票号">
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label for="billingMoney" class="col-sm-2 control-label">开票金额*:</label>
                                 <div class="col-sm-10">

@@ -2,11 +2,12 @@ package com.doubao.finance.dao;
 
 import com.doubao.finance.model.request.BillingQueryCondition;
 import com.doubao.finance.pojo.Billing;
-import java.util.List;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public abstract interface BillingDao
+public interface BillingDao
 {
     public abstract void insertBilling(Billing paramBilling);
 

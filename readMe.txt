@@ -1,0 +1,1 @@
+alter table finance_billing add billingNumber varchar(100);
