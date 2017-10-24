@@ -1,41 +1,41 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
 package com.doubao.finance.util.ajax;
 
-public class JsonResponseBuilder
-{
-    public static <T> JsonResponse buildJsonResponse(ResponseCode code, T data)
-    {
-        if (code == null) {
-            throw new NullPointerException();
-        }
-        if (data == null) {
-            return new JsonResponse(code.getCode(), code.getMessage(), "");
-        }
-        return new JsonResponse(code.getCode(), code.getMessage(), data);
+public class JsonResponseBuilder {
+    public JsonResponseBuilder() {
     }
 
-    public static <T> JsonResponse buildSuccessJsonResponse(T data)
-    {
+    public static <T> JsonResponse buildJsonResponse(ResponseCode code, T data) {
+        if (code == null) {
+            throw new NullPointerException();
+        } else {
+            return data == null ? new JsonResponse(code.getCode(), code.getMessage(), "") : new JsonResponse(code.getCode(), code.getMessage(), data);
+        }
+    }
+
+    public static <T> JsonResponse buildSuccessJsonResponse(T data) {
         return buildJsonResponse(ResponseCode.OK, data);
     }
 
-    public static JsonResponse buildSuccessJsonResponseWithoutData()
-    {
-        return buildSuccessJsonResponse(null);
+    public static JsonResponse buildSuccessJsonResponseWithoutData() {
+        return buildSuccessJsonResponse((Object) null);
     }
 
-    public static <T> JsonResponse buildErrorJsonResponse(ResponseCode code, T data)
-    {
+    public static <T> JsonResponse buildErrorJsonResponse(ResponseCode code, T data) {
         if (code == null) {
             throw new NullPointerException();
+        } else if (code == ResponseCode.OK) {
+            throw new IllegalArgumentException("build error json code ,but you passed a success json code ！");
+        } else {
+            return buildJsonResponse(code, data);
         }
-        if (code == ResponseCode.OK) {
-            throw new IllegalArgumentException("build error json code ,but you passed a success json code ��");
-        }
-        return buildJsonResponse(code, data);
     }
 
-    public static JsonResponse buildErrorJsonResponseWithoutData(ResponseCode code)
-    {
-        return buildErrorJsonResponse(code, null);
+    public static JsonResponse buildErrorJsonResponseWithoutData(ResponseCode code) {
+        return buildErrorJsonResponse(code, (Object) null);
     }
 }
