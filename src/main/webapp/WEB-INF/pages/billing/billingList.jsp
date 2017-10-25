@@ -15,7 +15,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> 豆包网财务系统</a></li>
-            <li class="active">开票列表</li>
+            <li class="active">发票列表</li>
         </ol>
     </section>
 
@@ -27,7 +27,7 @@
 
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">开票列表</h3>
+                        <h3 class="box-title">发票列表</h3>
                     </div>
                     <div class="box-body">
                         <div class="row">
@@ -45,7 +45,7 @@
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             <input type="text" class="form-control pull-right" id="receiveDate"
-                                                   placeholder="请选择开票日期">
+                                                   placeholder="请选择发票日期">
                                         </div>
                                     </div>
                                 </div>
@@ -75,10 +75,11 @@
                             <thead>
                             <tr>
                                 <th>id</th>
-                                <th>开票流水号</th>
+                                <th>发票流水号</th>
                                 <th>发票号</th>
                                 <th>结算实体</th>
-                                <th>开票金额</th>
+                                <th>发票金额</th>
+                                <th>发票类型</th>
                                 <th>开票日期</th>
                                 <th>张数</th>
                                 <th>最后更新人</th>

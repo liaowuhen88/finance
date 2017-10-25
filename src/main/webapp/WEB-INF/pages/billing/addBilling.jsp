@@ -15,7 +15,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> 豆包网财务系统</a></li>
-            <li class="active">新增开票</li>
+            <li class="active">新增发票</li>
         </ol>
     </section>
 
@@ -28,7 +28,7 @@
                 <div class="col-md-12">
                     <div class="box box-info">
                         <div class="box-header with-border">
-                            <h3 class="box-title">开票信息</h3>
+                            <h3 class="box-title">发票信息</h3>
                         </div>
                         <div class="box box-body">
                             <div class="form-group">
@@ -49,16 +49,16 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="billingMoney" class="col-sm-2 control-label">开票金额*:</label>
+                                <label for="billingMoney" class="col-sm-2 control-label">发票金额*:</label>
                                 <div class="col-sm-10">
                                     <input type="text" required class="form-control" id="billingMoney"
-                                           name="billingMoney" placeholder="开票金额">
+                                           name="billingMoney" placeholder="发票金额">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="billType" class="col-sm-2 control-label">开票类型:</label>
+                                <label for="billType" class="col-sm-2 control-label">发票类型:</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" id="billType" name="billType" placeholder="开票类型">
+                                    <select class="form-control" id="billType" name="billType" placeholder="发票类型">
                                         <option value="0">--</option>
                                         <option value="1">增值税普通发票</option>
                                         <option value="2">增值税专用发票</option>
@@ -66,10 +66,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="billProjectType" class="col-sm-2 control-label">开票项目:</label>
+                                <label for="billProjectType" class="col-sm-2 control-label">发票项目:</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" id="billProjectType" name="billProjectType"
-                                            placeholder="开票项目">
+                                            placeholder="发票项目">
                                         <option value="0">--</option>
                                         <option value="1">服务费</option>
                                         <option value="2">技术服务费</option>

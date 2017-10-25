@@ -52,6 +52,7 @@ $(document).ready(function () {
                 return accounting.formatMoney(row['billingMoney'], "￥");
             }
             },
+            {"data": "billTypeName"},
             {"data": "billingDate"},
             {"data": "billingImgCount"},
             {"data": "lastUpdater"},

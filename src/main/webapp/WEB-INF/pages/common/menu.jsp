@@ -29,7 +29,7 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>开票管理</span>
+                <a href="#"><i class="fa fa-link"></i> <span>发票管理</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -37,12 +37,12 @@
                 <ul class="treeview-menu">
                     <li>
                         <a href="${pageContext.request.contextPath}/billing/list">
-                            <i class="fa fa-link"></i> <span>开票列表</span>
+                            <i class="fa fa-link"></i> <span>发票列表</span>
                         </a>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/billing/toAdd">
-                            <i class="fa fa-link"></i> <span>新增开票</span>
+                            <i class="fa fa-link"></i> <span>新增发票</span>
                         </a>
                     </li>
                 </ul>
@@ -63,3 +63,4 @@
     </section>
     <!-- /.sidebar -->
 </aside>
+

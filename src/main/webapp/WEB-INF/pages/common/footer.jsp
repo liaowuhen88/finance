@@ -54,5 +54,23 @@ immediately after the control sidebar -->
 
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
 
+<script>
+    $(function () {
+        var index = localStorage.getItem('menu_index');
+        if (index) {
+            console.log(index);
+            $('.treeview').eq(index - 1).addClass('active').find('ul.treeview-menu').addClass('menu-open');
+
+        }
+
+        $('.treeview').on('click', function () {
+
+            var index = $(this).index();
+            localStorage.setItem('menu_index', index);
+
+        });
+    });
+</script>
+
 </body>
 </html>

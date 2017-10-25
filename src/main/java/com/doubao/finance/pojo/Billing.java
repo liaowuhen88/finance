@@ -40,6 +40,8 @@ public class Billing extends BaseModel {
     @ExportField(title = "最后修改时间")
     private Date lastUpdateTime;
 
+    private String billTypeName;
+
     public Billing() {
     }
 
@@ -157,6 +159,7 @@ public class Billing extends BaseModel {
 
     public void setBillType(int billType) {
         this.billType = billType;
+        this.billTypeName = BillingType.valueOf(this.getBillType());
     }
 
     public int getBillProjectType() {
@@ -173,5 +176,13 @@ public class Billing extends BaseModel {
 
     public void setBillingNumber(String billingNumber) {
         this.billingNumber = billingNumber;
+    }
+
+    public String getBillTypeName() {
+        return billTypeName;
+    }
+
+    public void setBillTypeName(String billTypeName) {
+        this.billTypeName = billTypeName;
     }
 }
