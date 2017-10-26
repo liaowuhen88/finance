@@ -176,11 +176,32 @@
   <profile>
     <id>dev</id>
     <properties>
+
+      <bdy.env>dev</bdy.env>
+
       <jdbc.url>
         <![CDATA[jdbc:mysql://10.3.2.123/policycloud?characterEncoding=utf8&amp;allowMultiQueries=true]]>
       </jdbc.url>
       <jdbc.user>root</jdbc.user>
       <jdbc.pass>banma123</jdbc.pass>
+
+      <!--cas -->
+      <cas.server.enable>false</cas.server.enable>
+      <cas.server.name></cas.server.name>
+      <cas.url.finance></cas.url.finance>
+      <cas.server.login.url></cas.server.login.url>
+
+      <!--api -->
+      <api.chargeentity.url>http://test.17doubao.cn/channel/api/chargeEntity/query</api.chargeentity.url>
+      <api.chargeentity.query.url>http://test.17doubao.cn/channel/api/chargeEntity/json/query
+      </api.chargeentity.query.url>
+
+      <!--oss -->
+      <bj.oss.endpoint>oss-cn-beijing.aliyuncs.com</bj.oss.endpoint>
+      <bj.oss.accessKeyId>obTuyP8GflR8U3nO</bj.oss.accessKeyId>
+      <bj.oss.secretAccessKey>mAI1zcXmIL0sJ912J6qLmcPJvixvtp</bj.oss.secretAccessKey>
+
+
     </properties>
 
   </profile>
@@ -188,23 +209,58 @@
   <profile>
     <id>test</id>
     <properties>
+      <bdy.env>test</bdy.env>
       <jdbc.url>
         <![CDATA[jdbc:mysql://rdsws48qxoud80xy741g.mysql.rds.aliyuncs.com:3306/policycloud_test?characterEncoding=utf8&amp;allowMultiQueries=true]]>
       </jdbc.url>
       <jdbc.user>policycloud</jdbc.user>
       <jdbc.pass>OEU5at1A7zBLdipb</jdbc.pass>
+
+
+      <cas.server.enable>true</cas.server.enable>
+      <cas.server.name>http://test.17doubao.cn</cas.server.name>
+      <cas.url.finance>http://test.17doubao.com</cas.url.finance>
+      <sys.url>http://test.17doubao.cn/finance</sys.url>
+      <cas.server.login.url>http://test.17doubao.cn/cas-server</cas.server.login.url>
+
+
+      <!--api -->
+      <api.chargeentity.url>http://test.17doubao.cn/channel/api/chargeEntity/query</api.chargeentity.url>
+      <api.chargeentity.query.url>http://test.17doubao.cn/channel/api/chargeEntity/json/query
+      </api.chargeentity.query.url>
+
+      <!--oss -->
+      <bj.oss.endpoint>oss-cn-beijing.aliyuncs.com</bj.oss.endpoint>
+      <bj.oss.accessKeyId>obTuyP8GflR8U3nO</bj.oss.accessKeyId>
+      <bj.oss.secretAccessKey>mAI1zcXmIL0sJ912J6qLmcPJvixvtp</bj.oss.secretAccessKey>
+
     </properties>
 
   </profile>
   <profile>
     <id>online</id>
     <properties>
+      <bdy.env>online</bdy.env>
       <jdbc.url>
         <![CDATA[jdbc:mysql://rm-2ze15w77o950l031o.mysql.rds.aliyuncs.com:3306/finance?characterEncoding=utf8&amp;allowMultiQueries=true]]>
-
       </jdbc.url>
       <jdbc.user>finance</jdbc.user>
       <jdbc.pass>XjSqw7YTNKr</jdbc.pass>
+
+
+      <cas.server.enable>true</cas.server.enable>
+      <cas.server.name>http://f.17doubao.com</cas.server.name>
+      <cas.url.finance>http://f.17doubao.com</cas.url.finance>
+      <cas.server.login.url>http://cas.17doubao.com/cas-server</cas.server.login.url>
+
+      <!--api -->
+      <api.chargeentity.url>http://qd.17doubao.cn/api/chargeEntity/query</api.chargeentity.url>
+      <api.chargeentity.query.url>http://qd.17doubao.cn/api/chargeEntity/json/query</api.chargeentity.query.url>
+
+      <!--oss -->
+      <bj.oss.endpoint>oss-cn-beijing.aliyuncs.com</bj.oss.endpoint>
+      <bj.oss.accessKeyId>obTuyP8GflR8U3nO</bj.oss.accessKeyId>
+      <bj.oss.secretAccessKey>mAI1zcXmIL0sJ912J6qLmcPJvixvtp</bj.oss.secretAccessKey>
     </properties>
 
   </profile>

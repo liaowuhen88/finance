@@ -92,12 +92,11 @@ public class BillingController
     {
         try
         {
-            /*AttributePrincipal principal = (AttributePrincipal)request.getUserPrincipal();
+            AttributePrincipal principal = (AttributePrincipal) request.getUserPrincipal();
             if (principal == null) {
                 return JsonResponseBuilder.buildErrorJsonResponseWithoutData(ResponseCode.ERROR_USER_NOT_LOGIN);
             }
-            billing.setLastUpdater(principal.getName());*/
-            billing.setLastUpdater("principal");
+            billing.setLastUpdater(principal.getName());
             Billing newBilling = this.billingService.save(billing);
             return JsonResponseBuilder.buildSuccessJsonResponse(newBilling);
         }
